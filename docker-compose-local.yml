@@ -44,6 +44,48 @@ services:
     networks:
       - nwk
 
+  rabbit:
+    image: rabbitmq:3.9-management
+    restart: unless-stopped
+    container_name: calendar-rt
+    ports:
+      - "5672"
+      - "15672"
+    networks:
+      - nwk
+
+
+  celeryworker:
+    <<: *django
+    ports: []
+    container_name: calendar-cw
+    depends_on:
+      - postgres
+      - rabbit
+    command: /var/calendarapi/config/docker/start-celery-worker.sh
+    networks:
+      - nwk
+
+  flower:
+    <<: *django
+    ports:
+      - "32201:32201"
+    container_name: calendar-flwr
+    depends_on:
+      - celeryworker
+    command: /var/calendarapi/config/docker/start-flower.sh
+    networks:
+      - nwk
+
+  celerybeat:
+    <<: *django
+    ports: [ ]
+    container_name: calendar-cb
+    depends_on:
+      - celeryworker
+    command: /var/calendarapi/config/docker/start-celery-beat.sh
+    networks:
+      - nwk
 
 volumes:
   postgres-data:

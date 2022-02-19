@@ -17,6 +17,7 @@ THIRD_PART_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.events'
 ]
 
 DEV_APPS = [

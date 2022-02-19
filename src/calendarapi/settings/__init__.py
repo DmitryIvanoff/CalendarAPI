@@ -10,6 +10,7 @@ from .cache import *
 from .cors import *
 from .database import *
 from .docs import *
+from .email import *
 from .jwt import *
 from .localization import *
 from .installed_apps import *
