@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: calendar-ps
+    image: library/postgres:13
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    env_file: config/local/env.example
+    environment:
+      - POSTGRES_DB=calendar
+      - POSTGRES_USER=calendar
+      - POSTGRES_PASSWORD=calendar
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U calendar" ]
+      interval: 1s
+      timeout: 1s
+      retries: 10
+      start_period: 5s
+    networks:
+      - nwk
+    expose:
+      - "5432"
+
+  django: &django
+    container_name: calendar-gn
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: config/local/Dockerfile
+    env_file: config/local/env.example
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=local-password
+      - DJANGO_SUPERUSER_EMAIL=admin@local.ru
+      - DB_NAME=calendar
+      - DB_USER=calendar
+      - DB_PASSWORD=calendar
+    volumes:
+      - ./src:/usr/src/app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    networks:
+      - nwk
+
+
+volumes:
+  postgres-data:
+
+networks:
+  nwk:

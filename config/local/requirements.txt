@@ -1,0 +1,29 @@
+# Common
+Django==3.2.*
+djangorestframework==3.13.*
+djangorestframework-simplejwt==5.*
+psycopg2-binary==2.9.3
+
+celery==5.2.3
+django-celery-beat==2.2.1
+flower==1.0.0
+
+drf-ujson2==1.6.1
+
+
+# Additional
+django-filter==21.1
+django-cors-headers==3.11.0
+django-extensions==3.1.5
+
+# Cache
+# django-redis==5.*
+
+# Docs
+drf-spectacular
+
+# Development
+django-silk
+ipython
+model-mommy
+
