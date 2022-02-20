@@ -19,3 +19,6 @@ class CalendarEventAdmin(admin.ModelAdmin):
     search_fields = (
         'name',
     )
+    readonly_fields = (
+        'notification_sent',
+    )
