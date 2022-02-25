@@ -17,7 +17,8 @@ THIRD_PART_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
-    'apps.events'
+    'apps.events',
+    'apps.holidays'
 ]
 
 DEV_APPS = [

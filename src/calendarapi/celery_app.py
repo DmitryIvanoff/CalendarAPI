@@ -19,6 +19,10 @@ app.conf.update(
             'task': 'apps.events.tasks.process_events_notifications',
             'schedule': 30.0  # run task every 10 secs
         },
+        'process_sync_holidays_for_countries': {
+            'task': 'apps.holidays.tasks.process_sync_holidays_for_countries',
+            'schedule': 24*60*60  # run task every 24 hrs
+        },
     },
     # result_backend='redis://localhost:6379/2'
 )

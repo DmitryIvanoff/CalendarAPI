@@ -37,6 +37,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         model_fields = (
             'password',
             'email',
+            'country'
         )
         extra_fields = (
             'token',

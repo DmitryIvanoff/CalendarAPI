@@ -12,8 +12,8 @@ from apps.events.models import CalendarEvent
 class CalendarEventSerializer(serializers.ModelSerializer):
     created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.fields['end_at'].required = False
         self.fields['end_at'].allow_null = True
 

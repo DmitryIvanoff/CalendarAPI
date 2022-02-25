@@ -16,3 +16,4 @@ class User(AbstractUser):
 
     username = None
     email = models.EmailField(_('email address'), unique=True)
+    country = models.ForeignKey('holidays.Country', on_delete=models.SET_NULL, null=True, blank=True)

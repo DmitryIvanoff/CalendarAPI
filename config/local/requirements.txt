@@ -22,6 +22,13 @@ django-extensions==3.1.5
 # Docs
 drf-spectacular
 
+# html parsing
+beautifulsoup4==4.10.*
+
+# ics
+ics==0.7
+
+
 # Development
 django-silk
 ipython
