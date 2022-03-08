@@ -41,5 +41,7 @@ class HolidaySerializer(serializers.ModelSerializer):
         )
 
         fields = model_fields
-        queryset = Holiday.objects.only(*model_fields)
+        queryset = Holiday.objects.select_related(
+            'country'
+        ).only(*model_fields)
 
